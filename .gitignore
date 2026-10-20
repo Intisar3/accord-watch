@@ -1,0 +1,7 @@
+data/
+reports/
+__pycache__/
+tmp/
+.playwright-mcp/
+_to_delete/
+logs/

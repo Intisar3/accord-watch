@@ -1,0 +1,4 @@
+{
+  "folders": [{ "path": "." }],
+  "settings": { "files.exclude": { "_to_delete": true, ".playwright-mcp": true } }
+}

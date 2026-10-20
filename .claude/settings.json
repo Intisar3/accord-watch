@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python tools/db.py:*)",
+      "Bash(python tools/fetch_images.py:*)",
+      "Bash(python tools/render_report.py:*)",
+      "Bash(echo:*)",
+      "Read(./**)",
+      "WebFetch",
+      "WebSearch",
+      "mcp__playwright",
+      "PowerShell(python tools/db.py:*)",
+      "PowerShell(python tools/fetch_images.py:*)",
+      "PowerShell(python tools/render_report.py:*)",
+      "PowerShell(echo:*)",
+      "PowerShell(Get-Content:*)",
+      "Bash(cat:*)"
+    ],
+    "deny": [
+      "Bash(rm:*)",
+      "Read(./.env)"
+    ]
+  }
+}

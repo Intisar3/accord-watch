@@ -1,0 +1,51 @@
+# accord-watch settings. Edit freely; agents and tools read this file on every run.
+
+target:
+  make: Honda
+  model: Accord
+  keywords: ["Honda Accord", "هوندا أكورد", "هوندا اكورد", "أكورد", "اكورد"]
+  min_year: 2013            # oldest model year worth tracking
+  max_year: 2026
+
+budget:
+  target_omr: 4500          # ideal price
+  hard_max_omr: 5500        # listings above this are tracked but ranked low
+
+location:
+  preferred: ["مسقط", "Muscat", "السيب", "Seeb", "بوشر", "Bawshar", "مطرح", "Muttrah",
+              "العامرات", "Amerat", "قريات", "Quriyat", "الخوض", "المعبيلة", "الموالح",
+              "الغبرة", "القرم", "روي", "الحيل", "الخوير", "العذيبة", "الأنصب"]
+
+# Sites the Scout visits. Confirm each search_url on the first run (the Scout will
+# report any URL that no longer works). Add or remove sites here.
+sites:
+  - name: sooqcars
+    label: "سوق كارز / Sooq Cars"
+    enabled: false          # sooqcars.com blocks automated reading in its robots.txt; check it manually in the app
+    search_url: ""
+  - name: opensooq
+    label: "السوق المفتوح / OpenSooq Oman"
+    enabled: true
+    search_url: "https://om.opensooq.com/ar/tags/سيارات-هوندا-اكورد-للبيع-في-عمان"
+    note: "robots.txt allows /ar/tags/ and listing pages; WebFetch gets 403, so read it with the Playwright browser"
+  - name: mstaml
+    label: "مستعمل / Mstaml"
+    enabled: true
+    search_url: "https://www.mstaml.com/en/om/tag/oman/سيارات-هوندا?id=1923&location=25"
+
+crawl:
+  max_pages_per_site: 5
+  pause_seconds_between_pages: 4   # polite pace; one run per day
+  max_photos_per_listing: 12
+
+# Ranking weights (sum = 100). The Ranker agent fills condition_score; the rest is computed.
+weights:
+  budget: 25
+  condition: 25
+  consistency: 20         # fewer contradictions and visual red flags = higher
+  value: 15               # price vs market median of similar Accords
+  age_mileage: 10
+  location: 5
+
+expected_km_per_year: 20000
+report_language: ar
